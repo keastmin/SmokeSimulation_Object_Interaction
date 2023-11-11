@@ -151,10 +151,27 @@ void get_force_source(double* d, double* u, double* v, double* w) {
 }
 /* --------------------------------------------------- */
 
+/* ------------------------충돌 외력 추가 함수------------------------ */
+__global__ void set_collision_force(double* d, double* u, double* v, double* w, int* d_calc) {
+	int i = blockIdx.x * blockDim.x + threadIdx.x + 1;
+	int j = blockIdx.y * blockDim.y + threadIdx.y + 1;
+	int k = blockIdx.z * blockDim.z + threadIdx.z + 1;
+	if (i <= N && j <= N && k <= N) {
+
+	}
+}
+
+void get_collision_force() {
+	dim3 blockDim(8, 8, 8);
+	dim3 gridDim((N + blockDim.x - 1) / blockDim.x, (N + blockDim.y - 1) / blockDim.y, (N + blockDim.z - 1) / blockDim.z);
+
+}
+/* ------------------------------------------------------------------ */
 
 // 시뮬레이션 구동 함수
 void sim_fluid() {
 	get_force_source(dens_prev, u_prev, v_prev, w_prev);
+	get_collision_force();
 	vel_step(N, u, v, w, u_prev, v_prev, w_prev, visc, dt);
 	dens_step(N, dens, dens_prev, u, v, w, diff, dt);
 	cudaDeviceSynchronize();
@@ -268,7 +285,7 @@ int main() {
 
 
 		if (!simulation_stop) {
-			cudaMemset(CollisionObject::d_drawCollision, 0, N * N * N * sizeof(int));
+			cudaMemset(_coll->d_drawCollision, 0, N * N * N * sizeof(int));
 			_bullet.erase(std::remove_if(_bullet.begin(), _bullet.end(),
 				[](const std::unique_ptr<Bullet>& b) {
 					b->drawBullet(drawX, drawY, drawZ);

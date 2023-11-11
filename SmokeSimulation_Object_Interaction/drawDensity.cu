@@ -167,6 +167,14 @@ __global__ void update_dens(int N, glm::vec4* densC, double* kd, int* d_draw) {
 			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
 			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
 		}
+		else if (d_draw[dIdx] == 49) {
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+		}
 		else {
 			addCubeFaceColorDevice(p000, p010, p110, p100, densC, localIdx);
 			addCubeFaceColorDevice(p001, p011, p111, p101, densC, localIdx);

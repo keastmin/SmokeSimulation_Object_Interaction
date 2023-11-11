@@ -19,10 +19,9 @@ protected:
 	float _size;
 
 public:
-	static int* h_calcCollision;
-	static int* h_drawCollision;
 	static int* d_calcCollision;
 	static int* d_drawCollision;
+	static int* d_ID;
 	glm::vec3 _dir;
 	float _vel;
 

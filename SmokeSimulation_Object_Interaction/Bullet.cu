@@ -62,16 +62,16 @@ __global__ void inner_collision(int N, glm::vec3 pos, float size, double dx, dou
 	}
 }
 
-__global__ void markSurroundingCells(int N, int* d_draw) {
+__global__ void outter_collision(int N, int* d_calc, int* d_draw) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 	int j = blockIdx.y * blockDim.y + threadIdx.y;
 	int k = blockIdx.z * blockDim.z + threadIdx.z;
 
 	if (i < N && j < N && k < N) {
-		int idx = DIX(i, j, k);
+		int dIdx = DIX(i, j, k);
 
 		// 현재 셀이 충돌 셀이면 주변 셀을 확인
-		if (d_draw[idx] == 1) {
+		if (d_draw[dIdx] == 1) {
 			// 주변 셀을 확인하고, 비어있는 셀(0)에만 2를 저장
 			for (int di = -1; di <= 1; di++) {
 				for (int dj = -1; dj <= 1; dj++) {
@@ -80,9 +80,11 @@ __global__ void markSurroundingCells(int N, int* d_draw) {
 						int nj = j + dj;
 						int nk = k + dk;
 						if (ni >= 0 && ni < N && nj >= 0 && nj < N && nk >= 0 && nk < N) {
-							int nIdx = DIX(ni, nj, nk);
-							if (d_draw[nIdx] == 0) {
-								d_draw[nIdx] = 2;
+							int ndIdx = DIX(ni, nj, nk);
+							int ncIdx = CIX(ni + 1, nj + 1, nk + 1);
+							if (d_draw[ndIdx] == 0) {
+								d_draw[ndIdx] = 2;
+								d_calc[ncIdx] = 2;
 							}
 						}
 					}
@@ -92,12 +94,48 @@ __global__ void markSurroundingCells(int N, int* d_draw) {
 	}
 }
 
+__global__ void collision_direction(int N, glm::vec3 pos, int* drawIdxVal, int* calcIdxVal, glm::vec3 dir, float vel, double dx, double dy, double dz) {
+	int i = blockIdx.x * blockDim.x + threadIdx.x;
+	int j = blockIdx.y * blockDim.y + threadIdx.y;
+	int k = blockIdx.z * blockDim.z + threadIdx.z;
+	if (i < N && j < N && k < N) {
+		int dIdx = DIX(i, j, k);
+		int cIdx = CIX(i + 1, j + 1, k + 1);
+		double h, x, y, z;
+		h = 1.0 / N;
+		x = (i - 0.5) * h + dx;
+		y = (j - 0.5) * h + dy;
+		z = (k - 0.5) * h + dz;
+
+		glm::vec3 cell_center(x, y, z);
+
+		// 진행방향에 존재하는 셀 구하기
+		// 구체와 셀 중심점 간의 벡터	
+		glm::vec3 cell_to_sphere = cell_center - pos;
+
+		// 벡터 정규화
+		float length = glm::length(cell_to_sphere);
+		if (length != 0) {
+			cell_to_sphere /= length;
+		}
+
+		float cos_similarity = glm::dot(cell_to_sphere, dir);
+
+		// 임계값 설정 (예: 0.5)
+		float threshold = 0.0;
+		if ((cos_similarity > threshold) && drawIdxVal[dIdx] == 2 && calcIdxVal[cIdx] == 2) {
+			drawIdxVal[dIdx] = 49;
+			calcIdxVal[cIdx] = 49;
+		}
+	}
+}
+
 void Bullet::check_collision(double dx, double dy, double dz) {
 	dim3 blockDim(8, 8, 8);
 	dim3 gridDim((_N + blockDim.x - 1) / blockDim.x, (_N + blockDim.y - 1) / blockDim.y, (_N + blockDim.z - 1) / blockDim.z);
-	inner_collision << <gridDim, blockDim >> > (_N, _curr_pos, _size, dx, dy, dz, d_calcCollision, d_drawCollision);
-	//cudaDeviceSynchronize();
-	markSurroundingCells << <gridDim, blockDim >> > (_N, d_drawCollision);
+	inner_collision<<<gridDim, blockDim>>>(_N, _curr_pos, _size, dx, dy, dz, d_calcCollision, d_drawCollision);
+	outter_collision<<<gridDim, blockDim>>>(_N, d_calcCollision, d_drawCollision);
+	collision_direction<<<gridDim, blockDim>>>(_N, _curr_pos, d_drawCollision, d_calcCollision, _dir, _vel, dx, dy, dz);
 }
 
 __global__ void updateBulletPos(int stacks, int slices, glm::vec3* sphere, glm::vec3 pos, float scale) {
@@ -168,28 +206,28 @@ void Bullet::drawBullet(double dx, double dy, double dz) {
 
 	check_collision(dx, dy, dz);
 
-	//glBindBuffer(GL_ARRAY_BUFFER, spherebuffer);
-	//glEnableVertexAttribArray(0);
-	//glVertexAttribPointer(
-	//	0,
-	//	3,
-	//	GL_FLOAT,
-	//	GL_FALSE,
-	//	0,
-	//	(void*)0
-	//);
+	glBindBuffer(GL_ARRAY_BUFFER, spherebuffer);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(
+		0,
+		3,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)0
+	);
 
-	//glBindBuffer(GL_ARRAY_BUFFER, sphereColorBuffer);
-	//glEnableVertexAttribArray(1);
-	//glVertexAttribPointer(
-	//	1,
-	//	4,
-	//	GL_FLOAT,
-	//	GL_FALSE,
-	//	0,
-	//	(void*)0
-	//);
-	//glDrawArrays(GL_TRIANGLES, 0, sphereNum);
-	//glDisableVertexAttribArray(0);
-	//glDisableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, sphereColorBuffer);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(
+		1,
+		4,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)0
+	);
+	glDrawArrays(GL_TRIANGLES, 0, sphereNum);
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
 }
