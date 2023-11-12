@@ -60,9 +60,13 @@ double drawX = -0.5;
 double drawY = -0.5;
 double drawZ = -0.5;
 
-// 총알의 크기와 속도
+// 총알의 크기와 속도 그리고 ID
 float bulletSize = 0.07f;
 float bulletVel = 0.1f;
+int bulletID = 1;
+const int maxObject = 10;
+glm::vec3* OBJ_Dir;
+float* OBJ_Vel;
 
 // 데이터 소멸
 void free_data() {
@@ -76,6 +80,8 @@ void free_data() {
 	if (dens_prev) cudaFree(dens_prev);
 	if (_vel) delete _vel;
 	if (_den) delete _den;
+	if (OBJ_Dir) cudaFree(OBJ_Dir);
+	if (OBJ_Vel) cudaFree(OBJ_Vel);
 
 	_coll->finalize_memory();
 }
@@ -102,6 +108,8 @@ static void init_data() {
 	cudaMalloc((void**)&w_prev, d_size);
 	cudaMalloc((void**)&dens, d_size);
 	cudaMalloc((void**)&dens_prev, d_size);
+	cudaMalloc((void**)&OBJ_Dir, maxObject * sizeof(glm::vec3));
+	cudaMalloc((void**)&OBJ_Vel, maxObject * sizeof(float));
 
 	int blockSize = 256;
 	int numBlocks = (size + blockSize - 1) / blockSize;
@@ -152,19 +160,45 @@ void get_force_source(double* d, double* u, double* v, double* w) {
 /* --------------------------------------------------- */
 
 /* ------------------------충돌 외력 추가 함수------------------------ */
-__global__ void set_collision_force(double* d, double* u, double* v, double* w, int* d_calc) {
+__global__ void set_collision_force(double* d, double* u, double* v, double* w, double* pu, double* pv, double* pw, int* d_calc, glm::vec3* cd, float* cv, int mx, int* id) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x + 1;
 	int j = blockIdx.y * blockDim.y + threadIdx.y + 1;
 	int k = blockIdx.z * blockDim.z + threadIdx.z + 1;
 	if (i <= N && j <= N && k <= N) {
-
+		int cIdx = CIX(i, j, k);
+		if (d_calc[cIdx] == 1) {
+			d[cIdx] = 0.0;
+			u[cIdx] = 0.0;
+			v[cIdx] = 0.0;
+			w[cIdx] = 0.0;
+			d_calc[cIdx] = 0;
+		}
+		if (d_calc[cIdx] == 49) {
+			int cId = id[cIdx] % mx;
+			pu[cIdx] = 150 * cd[cId].x * cv[cId];
+			pv[cIdx] = 150 * cd[cId].y * cv[cId];
+			pw[cIdx] = 150 * cd[cId].z * cv[cId];
+		}
 	}
 }
 
 void get_collision_force() {
 	dim3 blockDim(8, 8, 8);
 	dim3 gridDim((N + blockDim.x - 1) / blockDim.x, (N + blockDim.y - 1) / blockDim.y, (N + blockDim.z - 1) / blockDim.z);
+	int bSize;
+	glm::vec3 _cd[maxObject];
+	float _cv[maxObject];
+	for (bSize = 0; bSize < _bullet.size(); bSize++) {
+		int id = _bullet[bSize]->_ID;
+		_cd[id % maxObject] = _bullet[bSize]->_dir;
+		_cv[id % maxObject] = _bullet[bSize]->_vel;
+	}
 
+	cudaMemcpy(OBJ_Dir, _cd, maxObject * sizeof(glm::vec3), cudaMemcpyHostToDevice);
+	cudaMemcpy(OBJ_Vel, _cv, maxObject * sizeof(float), cudaMemcpyHostToDevice);
+
+	set_collision_force<<<gridDim, blockDim>>>(dens, u, v, w, u_prev, v_prev, w_prev, _coll->d_calcCollision, OBJ_Dir, OBJ_Vel, maxObject, _coll->d_calcID);
+	cudaDeviceSynchronize();
 }
 /* ------------------------------------------------------------------ */
 
@@ -200,7 +234,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && _bullet.size() < maxObject) {
 		glm::vec3 testPos(0, 0, 2);
 		glm::vec3 testDir = testPos - glm::vec3(0,0,3);
 		//glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
@@ -209,7 +243,8 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 		glm::vec3 _dir = testDir;
 		//_pos += (_dir * 1.0f);
 		glm::vec3 bInfo[2] = { _pos, _dir };
-		_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel));
+
+		_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
 	}
 }
 
@@ -243,10 +278,10 @@ int main() {
 	init_data();
 	cudaDeviceSynchronize();
 
+
 	// 클래스 초기화
 	_vel = new drawVelocity(N, drawX, drawY, drawZ);
 	_den = new drawDensity(N, drawX, drawY, drawZ);
-
 
 	// 쉐이더 읽기
 	GLuint programID = LoadShaders("VertexShaderSL.txt", "FragmentShaderSL.txt");
@@ -286,6 +321,9 @@ int main() {
 
 		if (!simulation_stop) {
 			cudaMemset(_coll->d_drawCollision, 0, N * N * N * sizeof(int));
+			cudaMemset(_coll->d_calcCollision, 0, (N + 2) * (N + 2) * (N + 2) * sizeof(int));
+			cudaMemset(_coll->d_calcID, 0, (N + 2) * (N + 2) * (N + 2) * sizeof(int));
+
 			_bullet.erase(std::remove_if(_bullet.begin(), _bullet.end(),
 				[](const std::unique_ptr<Bullet>& b) {
 					b->drawBullet(drawX, drawY, drawZ);

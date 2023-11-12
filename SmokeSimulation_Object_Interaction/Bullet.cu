@@ -4,7 +4,7 @@
 #define CIX(i, j, k) ((i) + (N+2)*(j) + (N+2)*(N+2)*(k))
 #define M_PI 3.141592
 
-Bullet::Bullet(int N, float size, glm::vec3 bInfo[], float vel) : CollisionObject(N, size, bInfo, vel){
+Bullet::Bullet(int N, float size, glm::vec3 bInfo[], float vel, int id) : CollisionObject(N, size, bInfo, vel, id){
 	numStacks = 20;
 	numSlices = 20;
 	sphereNum = 6 * numStacks * numSlices;
@@ -15,7 +15,6 @@ Bullet::Bullet(int N, float size, glm::vec3 bInfo[], float vel) : CollisionObjec
 	glBufferData(GL_ARRAY_BUFFER, sphereNum * sizeof(glm::vec3), NULL, GL_STREAM_DRAW);
 
 	cudaGraphicsGLRegisterBuffer(&cudaVBOsphere, spherebuffer, cudaGraphicsMapFlagsWriteDiscard);
-	cudaGraphicsUnmapResources(1, &cudaVBOsphere, 0);
 
 	sphereColors = new glm::vec4[sphereNum];
 	for (int i = 0; i < sphereNum; ++i) {
@@ -26,7 +25,7 @@ Bullet::Bullet(int N, float size, glm::vec3 bInfo[], float vel) : CollisionObjec
 	glBindBuffer(GL_ARRAY_BUFFER, sphereColorBuffer);
 	glBufferData(GL_ARRAY_BUFFER, sphereNum * sizeof(glm::vec4), sphereColors, GL_STATIC_DRAW);
 
-	std::cout << "총알 생성" << '\n';
+	std::cout << "총알 생성 ID: " << _ID << '\n';
 }
 
 Bullet::~Bullet() {
@@ -37,7 +36,7 @@ Bullet::~Bullet() {
 	std::cout << "총알 소멸" << '\n';
 }
 
-__global__ void inner_collision(int N, glm::vec3 pos, float size, double dx, double dy, double dz, int* d_calc, int* d_draw) {
+__global__ void inner_collision(int N, int id, glm::vec3 pos, float size, double dx, double dy, double dz, int* d_calc, int* d_draw, int* cID) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 	int j = blockIdx.y * blockDim.y + threadIdx.y;
 	int k = blockIdx.z * blockDim.z + threadIdx.z;
@@ -58,20 +57,22 @@ __global__ void inner_collision(int N, glm::vec3 pos, float size, double dx, dou
 		if (distance <= size) {
 			d_draw[dIdx] = 1;
 			d_calc[cIdx] = 1;
+			cID[cIdx] = id;
 		}
 	}
 }
 
-__global__ void outter_collision(int N, int* d_calc, int* d_draw) {
+__global__ void outter_collision(int N, int id, int* d_calc, int* d_draw, int* cID) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 	int j = blockIdx.y * blockDim.y + threadIdx.y;
 	int k = blockIdx.z * blockDim.z + threadIdx.z;
 
 	if (i < N && j < N && k < N) {
 		int dIdx = DIX(i, j, k);
+		int cIdx = CIX(i + 1, j + 1, k + 1);
 
 		// 현재 셀이 충돌 셀이면 주변 셀을 확인
-		if (d_draw[dIdx] == 1) {
+		if (d_draw[dIdx] == 1 && cID[cIdx] == id) {
 			// 주변 셀을 확인하고, 비어있는 셀(0)에만 2를 저장
 			for (int di = -1; di <= 1; di++) {
 				for (int dj = -1; dj <= 1; dj++) {
@@ -85,6 +86,7 @@ __global__ void outter_collision(int N, int* d_calc, int* d_draw) {
 							if (d_draw[ndIdx] == 0) {
 								d_draw[ndIdx] = 2;
 								d_calc[ncIdx] = 2;
+								cID[ncIdx] = id;
 							}
 						}
 					}
@@ -94,7 +96,7 @@ __global__ void outter_collision(int N, int* d_calc, int* d_draw) {
 	}
 }
 
-__global__ void collision_direction(int N, glm::vec3 pos, int* drawIdxVal, int* calcIdxVal, glm::vec3 dir, float vel, double dx, double dy, double dz) {
+__global__ void collision_direction(int N, int id, glm::vec3 pos, int* drawIdxVal, int* calcIdxVal, glm::vec3 dir, float vel, double dx, double dy, double dz, int* cID) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 	int j = blockIdx.y * blockDim.y + threadIdx.y;
 	int k = blockIdx.z * blockDim.z + threadIdx.z;
@@ -123,7 +125,7 @@ __global__ void collision_direction(int N, glm::vec3 pos, int* drawIdxVal, int* 
 
 		// 임계값 설정 (예: 0.5)
 		float threshold = 0.0;
-		if ((cos_similarity > threshold) && drawIdxVal[dIdx] == 2 && calcIdxVal[cIdx] == 2) {
+		if ((cos_similarity > threshold) && drawIdxVal[dIdx] == 2 && cID[cIdx] == id) {
 			drawIdxVal[dIdx] = 49;
 			calcIdxVal[cIdx] = 49;
 		}
@@ -133,9 +135,9 @@ __global__ void collision_direction(int N, glm::vec3 pos, int* drawIdxVal, int* 
 void Bullet::check_collision(double dx, double dy, double dz) {
 	dim3 blockDim(8, 8, 8);
 	dim3 gridDim((_N + blockDim.x - 1) / blockDim.x, (_N + blockDim.y - 1) / blockDim.y, (_N + blockDim.z - 1) / blockDim.z);
-	inner_collision<<<gridDim, blockDim>>>(_N, _curr_pos, _size, dx, dy, dz, d_calcCollision, d_drawCollision);
-	outter_collision<<<gridDim, blockDim>>>(_N, d_calcCollision, d_drawCollision);
-	collision_direction<<<gridDim, blockDim>>>(_N, _curr_pos, d_drawCollision, d_calcCollision, _dir, _vel, dx, dy, dz);
+	inner_collision<<<gridDim, blockDim>>>(_N, _ID, _curr_pos, _size, dx, dy, dz, d_calcCollision, d_drawCollision, d_calcID);
+	outter_collision<<<gridDim, blockDim>>>(_N, _ID, d_calcCollision, d_drawCollision, d_calcID);
+	collision_direction<<<gridDim, blockDim>>>(_N, _ID, _curr_pos, d_drawCollision, d_calcCollision, _dir, _vel, dx, dy, dz, d_calcID);
 }
 
 __global__ void updateBulletPos(int stacks, int slices, glm::vec3* sphere, glm::vec3 pos, float scale) {
@@ -203,6 +205,7 @@ void Bullet::drawBullet(double dx, double dy, double dz) {
 	cudaGraphicsResourceGetMappedPointer((void**)&d_sphere_buffer, &numBytesphere, cudaVBOsphere);
 	updateBulletPos << <gridDim, blockDim >> > (numStacks, numSlices, d_sphere_buffer, _curr_pos, _size);
 	cudaGraphicsUnmapResources(1, &cudaVBOsphere, 0);
+	
 
 	check_collision(dx, dy, dz);
 

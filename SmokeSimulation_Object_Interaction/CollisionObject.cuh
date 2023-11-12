@@ -21,12 +21,13 @@ protected:
 public:
 	static int* d_calcCollision;
 	static int* d_drawCollision;
-	static int* d_ID;
+	static int* d_calcID;
 	glm::vec3 _dir;
 	float _vel;
+	int _ID;
 
 public:
-	CollisionObject(int N, float size, glm::vec3 oInfo[], float vel);
+	CollisionObject(int N, float size, glm::vec3 oInfo[], float vel, int id);
 	virtual ~CollisionObject();
 	virtual void check_collision(double dx, double dy, double dz) = 0;
 	inline float getLength() {
