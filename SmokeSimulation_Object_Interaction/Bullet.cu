@@ -206,31 +206,30 @@ void Bullet::drawBullet(double dx, double dy, double dz) {
 	updateBulletPos << <gridDim, blockDim >> > (numStacks, numSlices, d_sphere_buffer, _curr_pos, _size);
 	cudaGraphicsUnmapResources(1, &cudaVBOsphere, 0);
 	
-
 	check_collision(dx, dy, dz);
 
-	glBindBuffer(GL_ARRAY_BUFFER, spherebuffer);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(
-		0,
-		3,
-		GL_FLOAT,
-		GL_FALSE,
-		0,
-		(void*)0
-	);
+	//glBindBuffer(GL_ARRAY_BUFFER, spherebuffer);
+	//glEnableVertexAttribArray(0);
+	//glVertexAttribPointer(
+	//	0,
+	//	3,
+	//	GL_FLOAT,
+	//	GL_FALSE,
+	//	0,
+	//	(void*)0
+	//);
 
-	glBindBuffer(GL_ARRAY_BUFFER, sphereColorBuffer);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(
-		1,
-		4,
-		GL_FLOAT,
-		GL_FALSE,
-		0,
-		(void*)0
-	);
-	glDrawArrays(GL_TRIANGLES, 0, sphereNum);
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
+	//glBindBuffer(GL_ARRAY_BUFFER, sphereColorBuffer);
+	//glEnableVertexAttribArray(1);
+	//glVertexAttribPointer(
+	//	1,
+	//	4,
+	//	GL_FLOAT,
+	//	GL_FALSE,
+	//	0,
+	//	(void*)0
+	//);
+	//glDrawArrays(GL_TRIANGLES, 0, sphereNum);
+	//glDisableVertexAttribArray(0);
+	//glDisableVertexAttribArray(1);
 }

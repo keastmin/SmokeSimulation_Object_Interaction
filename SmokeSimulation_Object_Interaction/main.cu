@@ -33,8 +33,8 @@ GLFWwindow* window;
 #define SIZE 64
 
 // 윈도우 사이즈 정의
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 1200
+#define WINDOW_HEIGHT 1200
 static int width = WINDOW_WIDTH;
 static int height = WINDOW_HEIGHT;
 
@@ -171,7 +171,6 @@ __global__ void set_collision_force(double* d, double* u, double* v, double* w, 
 			u[cIdx] = 0.0;
 			v[cIdx] = 0.0;
 			w[cIdx] = 0.0;
-			d_calc[cIdx] = 0;
 		}
 		if (d_calc[cIdx] == 49) {
 			int cId = id[cIdx] % mx;
@@ -206,6 +205,7 @@ void get_collision_force() {
 void sim_fluid() {
 	get_force_source(dens_prev, u_prev, v_prev, w_prev);
 	get_collision_force();
+	_coll->divide_midCell(N);
 	vel_step(N, u, v, w, u_prev, v_prev, w_prev, visc, dt);
 	dens_step(N, dens, dens_prev, u, v, w, diff, dt);
 	cudaDeviceSynchronize();
@@ -235,13 +235,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && _bullet.size() < maxObject) {
-		glm::vec3 testPos(0, 0, 2);
-		glm::vec3 testDir = testPos - glm::vec3(0,0,3);
-		//glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
-		//glm::vec3 _dir = getCameraDirection();		// 현재 카메라가 바라보는 방향
-		glm::vec3 _pos = testPos;
-		glm::vec3 _dir = testDir;
-		//_pos += (_dir * 1.0f);
+		//glm::vec3 testPos(0, 0, 2);
+		//glm::vec3 testDir = testPos - glm::vec3(0,0,3);
+		glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
+		glm::vec3 _dir = getCameraDirection();		// 현재 카메라가 바라보는 방향
+		//glm::vec3 _pos = testPos;
+		//glm::vec3 _dir = testDir;
+		_pos += (_dir * 1.0f);
 		glm::vec3 bInfo[2] = { _pos, _dir };
 
 		_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
@@ -317,7 +317,6 @@ int main() {
 		glm::mat4 ModelMatrix = glm::mat4(1.0);
 		glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
 
 		if (!simulation_stop) {
 			cudaMemset(_coll->d_drawCollision, 0, N * N * N * sizeof(int));

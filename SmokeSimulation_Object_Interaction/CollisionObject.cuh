@@ -33,8 +33,12 @@ public:
 	inline float getLength() {
 		return glm::length(_curr_pos - _start_pos);
 	}
+	static void divide_midCell(int N);
 	static void initialize_memory(int N);
 	static void finalize_memory();
 };
+
+__global__ void divide_midCell_Outter();
+__global__ void divide_midCell_inner();
 
 #endif __COLLISIONOBJECT__

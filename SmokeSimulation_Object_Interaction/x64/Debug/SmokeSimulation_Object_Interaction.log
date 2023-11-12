@@ -1,9 +1,6 @@
-﻿  Compiling CUDA source file Bullet.cu...
-  Compiling CUDA source file main.cu...
+﻿  Compiling CUDA source file drawDensity.cu...
   
-  C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64" -x cu   -IDependencies\GLFW\include -IDependencies\GLEW\include -IDependencies\GLM -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include"  -G   --keep-dir x64\Debug  -maxrregcount=0   --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/Fdx64\Debug\vc143.pdb" -o C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\x64\Debug\main.cu.obj "C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\main.cu" 
-  
-  C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64" -x cu   -IDependencies\GLFW\include -IDependencies\GLEW\include -IDependencies\GLM -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include"  -G   --keep-dir x64\Debug  -maxrregcount=0   --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/Fdx64\Debug\vc143.pdb" -o C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\x64\Debug\Bullet.cu.obj "C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Bullet.cu" 
+  C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64" -x cu   -IDependencies\GLFW\include -IDependencies\GLEW\include -IDependencies\GLM -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include"  -G   --keep-dir x64\Debug  -maxrregcount=0   --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/Fdx64\Debug\vc143.pdb" -o C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\x64\Debug\drawDensity.cu.obj "C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\drawDensity.cu" 
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
@@ -23,45 +20,6 @@ C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(853): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(7276): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(14857): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(18477): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(20651): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(21325): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
@@ -87,16 +45,6 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		           ^
   
   Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-  
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-  
-  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-  
-    		                                  ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec() = default;
@@ -106,21 +54,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
     		           ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		           ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
     		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<2, T, Q> & operator=(vec const& v) = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec<2, T, Q> & operator=(vec const& v) = default;
@@ -130,21 +66,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec<2, T, Q> & operator=(vec const& v) = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<2, T, Q> & operator=(vec const& v) = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec() = default;
     		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		                                  ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec() = default;
@@ -154,21 +78,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
     		           ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		           ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
     		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<3, T, Q>& operator=(vec<3, T, Q> const& v) = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec<3, T, Q>& operator=(vec<3, T, Q> const& v) = default;
@@ -178,29 +90,13 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec<3, T, Q>& operator=(vec<3, T, Q> const& v) = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<3, T, Q>& operator=(vec<3, T, Q> const& v) = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec() = default;
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		           ^
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-  
     		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec() = default;
     		                                  ^
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-  
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec<4, T, Q> const& v) = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec(vec<4, T, Q> const& v) = default;
@@ -210,21 +106,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec(vec<4, T, Q> const& v) = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec<4, T, Q> const& v) = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec<4, T, Q>& operator=(vec<4, T, Q> const& v) = default;
     		           ^
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-  
-    		__declspec(__device__) __declspec(__host__)  vec<4, T, Q>& operator=(vec<4, T, Q> const& v) = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<4, T, Q>& operator=(vec<4, T, Q> const& v) = default;
-    		                                  ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec<4, T, Q>& operator=(vec<4, T, Q> const& v) = default;
@@ -234,21 +118,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		           ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
@@ -258,45 +130,21 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
     		           ^
-    		           ^
-  
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		                                  ^
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-  
     		                                  ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
     		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
-    		                                  ^
-  
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
@@ -306,21 +154,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
@@ -330,21 +166,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		           ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
@@ -354,21 +178,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
@@ -378,21 +190,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec() = default;
     		           ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec() = default;
     		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(96): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(96): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
@@ -402,14 +202,6 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(96): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(132): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<1, T, Q> & operator=(vec const& v) = default;
-    		           ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(132): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  vec<1, T, Q> & operator=(vec const& v) = default;
     		           ^
@@ -418,51 +210,6 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec<1, T, Q> & operator=(vec const& v) = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(132): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<1, T, Q> & operator=(vec const& v) = default;
-    		                                  ^
-  
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(853): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(7276): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(14857): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(18477): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(20651): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda.h(21325): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
@@ -578,32 +325,6 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec<4, T, Q>& operator=(vec<4, T, Q> const& v) = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-  
-  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<2, T, Q> & operator=(vec const& v) = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<2, T, Q> & operator=(vec const& v) = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		           ^
@@ -628,126 +349,6 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<3, T, Q>& operator=(vec<3, T, Q> const& v) = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<3, T, Q>& operator=(vec<3, T, Q> const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-    		                                  ^
-  
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec<4, T, Q> const& v) = default;
-  
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec<4, T, Q> const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<4, T, Q>& operator=(vec<4, T, Q> const& v) = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<4, T, Q>& operator=(vec<4, T, Q> const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		           ^
@@ -764,33 +365,13 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
   
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec() = default;
-    		                                  ^
-  
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		           ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(96): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
     		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
     		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(96): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec(vec const& v) = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(132): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<1, T, Q> & operator=(vec const& v) = default;
-    		           ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
@@ -798,10 +379,6 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
     		__declspec(__device__) __declspec(__host__)  mat() = default;
-    		                                  ^
-  
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\detail/type_vec1.hpp(132): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
-    		__declspec(__device__) __declspec(__host__)  vec<1, T, Q> & operator=(vec const& v) = default;
     		                                  ^
   
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\Dependencies\GLM\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
@@ -844,17 +421,9 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		__declspec(__device__) __declspec(__host__)  vec<1, T, Q> & operator=(vec const& v) = default;
     		                                  ^
   
-  Bullet.cu
-  main.cu
-  tmpxft_00001528_00000000-7_Bullet.cudafe1.cpp
+  drawDensity.cu
+  tmpxft_00002c40_00000000-7_drawDensity.cudafe1.cpp
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-  tmpxft_00002768_00000000-7_main.cudafe1.cpp
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-     C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\x64\Debug\SmokeSimulation_Object_Interaction.lib 라이브러리 및 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\x64\Debug\SmokeSimulation_Object_Interaction.exp 개체를 생성하고 있습니다.
-LINK : warning LNK4098: 'LIBCMT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
-LINK : warning LNK4098: 'MSVCRT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
   SmokeSimulation_Object_Interaction.vcxproj -> C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\x64\Debug\SmokeSimulation_Object_Interaction.exe
