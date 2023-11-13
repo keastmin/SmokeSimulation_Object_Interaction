@@ -195,8 +195,8 @@ __global__ void updateBulletPos(int stacks, int slices, glm::vec3* sphere, glm::
 void Bullet::drawBullet(double dx, double dy, double dz) {
 	_prev_pos = _curr_pos;
 	_curr_pos += _dir * _vel;
-	_dir = glm::normalize(_curr_pos - _prev_pos);
-	_vel = glm::length(_curr_pos - _prev_pos);
+	//_dir = glm::normalize(_curr_pos - _prev_pos);
+	//_vel = glm::length(_curr_pos - _prev_pos);
 
 	dim3 blockDim(16, 16);
 	dim3 gridDim((numStacks + blockDim.x - 1) / blockDim.x, (numSlices + blockDim.y - 1) / blockDim.y);
@@ -208,28 +208,28 @@ void Bullet::drawBullet(double dx, double dy, double dz) {
 	
 	check_collision(dx, dy, dz);
 
-	//glBindBuffer(GL_ARRAY_BUFFER, spherebuffer);
-	//glEnableVertexAttribArray(0);
-	//glVertexAttribPointer(
-	//	0,
-	//	3,
-	//	GL_FLOAT,
-	//	GL_FALSE,
-	//	0,
-	//	(void*)0
-	//);
+	glBindBuffer(GL_ARRAY_BUFFER, spherebuffer);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(
+		0,
+		3,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)0
+	);
 
-	//glBindBuffer(GL_ARRAY_BUFFER, sphereColorBuffer);
-	//glEnableVertexAttribArray(1);
-	//glVertexAttribPointer(
-	//	1,
-	//	4,
-	//	GL_FLOAT,
-	//	GL_FALSE,
-	//	0,
-	//	(void*)0
-	//);
-	//glDrawArrays(GL_TRIANGLES, 0, sphereNum);
-	//glDisableVertexAttribArray(0);
-	//glDisableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, sphereColorBuffer);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(
+		1,
+		4,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)0
+	);
+	glDrawArrays(GL_TRIANGLES, 0, sphereNum);
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
 }

@@ -75,7 +75,7 @@ __global__ void corner_bnd(int N, double* x) {
 }
 
 // 경계조건 커널 구동 함수
-void set_bnd(int N, int b, double* x) {
+void set_bnd(int N, int b, double* x, int* d_calc) {
 	int blockSize = 256;
 	int numBlock = (N + blockSize - 1) / blockSize;
 
@@ -126,7 +126,7 @@ __global__ void black_cell_lin(int N, double* x, double* x0, double a, double c)
 }
 
 // 커널함수 구동
-void lin_solve(int N, int b, double* x, double* x0, double a, double c) {
+void lin_solve(int N, int b, double* x, double* x0, double a, double c, int* d_calc) {
 	int l;
 	dim3 blockDim3(8, 8, 8);
 	dim3 gridDim3((N / 2 + blockDim3.x - 1) / blockDim3.x, (N + blockDim3.y - 1) / blockDim3.y, (N + blockDim3.z - 1) / blockDim3.z);
@@ -138,16 +138,16 @@ void lin_solve(int N, int b, double* x, double* x0, double a, double c) {
 		black_cell_lin<<<gridDim3, blockDim3>>>(N, x, x0, a, c);
 		//cudaDeviceSynchronize();
 
-		set_bnd(N, b, x);
+		set_bnd(N, b, x, d_calc);
 		cudaDeviceSynchronize();
 	}
 }
 /* -------------------------------------------------------- */
 
 // 확산 함수
-void diffuse(int N, int b, double* x, double* x0, double diff, double dt) {
+void diffuse(int N, int b, double* x, double* x0, double diff, double dt, int* d_calc) {
 	double a = dt * diff * N * N * N;
-	lin_solve(N, b, x, x0, a, 1 + 6 * a);
+	lin_solve(N, b, x, x0, a, 1 + 6 * a, d_calc);
 }
 
 /* ------------------------이류 함수------------------------ */
@@ -174,14 +174,14 @@ __global__ void k_advect(int N, double* d, double* d0, double* u, double* v, dou
 }
 
 // advect 커널 구동 함수
-void advect(int N, int b, double* d, double* d0, double* u, double* v, double* w, double dt) {
+void advect(int N, int b, double* d, double* d0, double* u, double* v, double* w, double dt, int* d_calc) {
 	dim3 blockDim3(8, 8, 8);
 	dim3 gridDim3((N + blockDim3.x - 1) / blockDim3.x, (N + blockDim3.y - 1) / blockDim3.y, (N + blockDim3.z - 1) / blockDim3.z);
 
 	k_advect << <gridDim3, blockDim3 >> > (N, d, d0, u, v, w, dt);
 	cudaDeviceSynchronize();
 
-	set_bnd(N, b, d);
+	set_bnd(N, b, d, d_calc);
 	cudaDeviceSynchronize();
 }
 /* -------------------------------------------------------- */
@@ -215,28 +215,28 @@ __global__ void massConserve(int N, double* u, double* v, double* w, double* p) 
 }
 
 // 프로젝트 커널함수를 구동하는 함수
-void project(int N, double* u, double* v, double* w, double* p, double* div) {
+void project(int N, double* u, double* v, double* w, double* p, double* div, int* d_calc) {
 	dim3 blockDim3(8, 8, 8);
 	dim3 gridDim3((N + blockDim3.x - 1) / blockDim3.x, (N + blockDim3.y - 1) / blockDim3.y, (N + blockDim3.z - 1) / blockDim3.z);
 
 	calcDiv << <gridDim3, blockDim3 >> > (N, u, v, w, p, div);
 	cudaDeviceSynchronize();
 
-	set_bnd(N, 0, div); set_bnd(N, 0, p);
+	set_bnd(N, 0, div, d_calc); set_bnd(N, 0, p, d_calc);
 	cudaDeviceSynchronize();
 
-	lin_solve(N, 0, p, div, 1, 6);
+	lin_solve(N, 0, p, div, 1, 6, d_calc);
 
 	massConserve << <gridDim3, blockDim3 >> > (N, u, v, w, p);
 	cudaDeviceSynchronize();
 
-	set_bnd(N, 1, u); set_bnd(N, 2, v); set_bnd(N, 3, w);
+	set_bnd(N, 1, u, d_calc); set_bnd(N, 2, v, d_calc); set_bnd(N, 3, w, d_calc);
 	cudaDeviceSynchronize();
 }
 /* -------------------------------------------------------- */
 
 // 밀도 필드 업데이트
-void dens_step(int N, double* x, double* x0, double* u, double* v, double* w, double diff, double dt) {
+void dens_step(int N, double* x, double* x0, double* u, double* v, double* w, double diff, double dt, int* d_calc) {
 	// 소스항 추가
 	int sizeA = (N + 2) * (N + 2) * (N + 2);
 	int blockSize = 256;
@@ -244,13 +244,13 @@ void dens_step(int N, double* x, double* x0, double* u, double* v, double* w, do
 	add_source << <numBlocks, blockSize >> > (N, x, x0, dt);
 	cudaDeviceSynchronize();
 
-	SWAP(x0, x); diffuse(N, 0, x, x0, diff, dt);
-	SWAP(x0, x); advect(N, 0, x, x0, u, v, w, dt);
+	SWAP(x0, x); diffuse(N, 0, x, x0, diff, dt, d_calc);
+	SWAP(x0, x); advect(N, 0, x, x0, u, v, w, dt, d_calc);
 }
 
 
 // 속도 필드 업데이트
-void vel_step(int N, double* u, double* v, double* w, double* u0, double* v0, double* w0, double visc, double dt) {
+void vel_step(int N, double* u, double* v, double* w, double* u0, double* v0, double* w0, double visc, double dt, int* d_calc) {
 	// 소스항 추가
 	int sizeA = (N + 2) * (N + 2) * (N + 2);
 	int blockSize = 256;
@@ -261,19 +261,19 @@ void vel_step(int N, double* u, double* v, double* w, double* u0, double* v0, do
 	cudaDeviceSynchronize();
 
 	// 스왑 후 확산항
-	SWAP(u0, u); diffuse(N, 1, u, u0, visc, dt);
-	SWAP(v0, v); diffuse(N, 2, v, v0, visc, dt);
-	SWAP(w0, w); diffuse(N, 3, w, w0, visc, dt);
+	SWAP(u0, u); diffuse(N, 1, u, u0, visc, dt, d_calc);
+	SWAP(v0, v); diffuse(N, 2, v, v0, visc, dt, d_calc);
+	SWAP(w0, w); diffuse(N, 3, w, w0, visc, dt, d_calc);
 
 	// 프로젝션
-	project(N, u, v, w, u0, v0);
+	project(N, u, v, w, u0, v0, d_calc);
 
 	// 이류
 	SWAP(u0, u); SWAP(v0, v); SWAP(w0, w);
-	advect(N, 1, u, u0, u0, v0, w0, dt);
-	advect(N, 2, v, v0, u0, v0, w0, dt);
-	advect(N, 3, w, w0, u0, v0, w0, dt);
+	advect(N, 1, u, u0, u0, v0, w0, dt, d_calc);
+	advect(N, 2, v, v0, u0, v0, w0, dt, d_calc);
+	advect(N, 3, w, w0, u0, v0, w0, dt, d_calc);
 
 	// 마지막 프로젝션
-	project(N, u, v, w, u0, v0);
+	project(N, u, v, w, u0, v0, d_calc);
 }

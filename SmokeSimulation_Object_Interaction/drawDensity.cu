@@ -151,46 +151,46 @@ __global__ void update_dens(int N, glm::vec4* densC, double* kd, int* d_draw) {
 		glm::vec4 CV(0.0f, 1.0f, 1.0f, 1.0f);
 
 		int localIdx = 36 * dIdx;
-		//if (d_draw[dIdx] >= 3 && d_draw[dIdx] <= 28) {
-		//	addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
-		//	addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
-		//	addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
-		//	addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
-		//	addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
-		//	addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
-		//}
-		//else if (d_draw[dIdx] == 1) {
-		//	addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
-		//	addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
-		//	addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
-		//	addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
-		//	addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
-		//	addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
-		//}
-		//else if (d_draw[dIdx] == 2) {
-		//	addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
-		//	addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
-		//	addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
-		//	addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
-		//	addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
-		//	addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
-		//}
-		//else if (d_draw[dIdx] == 49) {
-		//	addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
-		//	addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
-		//	addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
-		//	addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
-		//	addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
-		//	addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
-		//}
-		//else {
+		if (d_draw[dIdx] >= 3 && d_draw[dIdx] <= 48) {
+			addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
+			addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
+			addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
+			addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
+			addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
+			addCubeFaceColorDevice(CCMid, CCMid, CCMid, CCMid, densC, localIdx);
+		}
+		else if (d_draw[dIdx] == 1) {
+			addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
+			addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
+			addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
+			addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
+			addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
+			addCubeFaceColorDevice(CCIn, CCIn, CCIn, CCIn, densC, localIdx);
+		}
+		else if (d_draw[dIdx] == 2) {
+			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
+			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
+			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
+			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
+			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
+			addCubeFaceColorDevice(CCOut, CCOut, CCOut, CCOut, densC, localIdx);
+		}
+		else if (d_draw[dIdx] == 49) {
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+			addCubeFaceColorDevice(CV, CV, CV, CV, densC, localIdx);
+		}
+		else {
 			addCubeFaceColorDevice(p000, p010, p110, p100, densC, localIdx);
 			addCubeFaceColorDevice(p001, p011, p111, p101, densC, localIdx);
 			addCubeFaceColorDevice(p000, p001, p101, p100, densC, localIdx);
 			addCubeFaceColorDevice(p010, p011, p111, p110, densC, localIdx);
 			addCubeFaceColorDevice(p000, p010, p011, p001, densC, localIdx);
 			addCubeFaceColorDevice(p100, p110, p111, p101, densC, localIdx);
-		//}
+		}
 	}
 }
 

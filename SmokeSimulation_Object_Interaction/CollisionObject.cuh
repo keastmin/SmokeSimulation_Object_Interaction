@@ -14,14 +14,14 @@ class CollisionObject {
 protected:
 	int _N;
 	glm::vec3 _start_pos;
-	glm::vec3 _curr_pos;
-	glm::vec3 _prev_pos;
 	float _size;
 
 public:
 	static int* d_calcCollision;
 	static int* d_drawCollision;
 	static int* d_calcID;
+	glm::vec3 _curr_pos;
+	glm::vec3 _prev_pos;
 	glm::vec3 _dir;
 	float _vel;
 	int _ID;

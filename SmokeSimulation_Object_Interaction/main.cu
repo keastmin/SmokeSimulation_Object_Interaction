@@ -33,8 +33,8 @@ GLFWwindow* window;
 #define SIZE 64
 
 // 윈도우 사이즈 정의
-#define WINDOW_WIDTH 1200
-#define WINDOW_HEIGHT 1200
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
 static int width = WINDOW_WIDTH;
 static int height = WINDOW_HEIGHT;
 
@@ -54,6 +54,7 @@ static double source = 200.0f;
 static int addforce = 0;
 static int mode = 0;
 static int simulation_stop = 0;
+static int objMode = 0;
 
 // 시뮬레이션 위치
 double drawX = -0.5;
@@ -206,8 +207,8 @@ void sim_fluid() {
 	get_force_source(dens_prev, u_prev, v_prev, w_prev);
 	get_collision_force();
 	_coll->divide_midCell(N);
-	vel_step(N, u, v, w, u_prev, v_prev, w_prev, visc, dt);
-	dens_step(N, dens, dens_prev, u, v, w, diff, dt);
+	vel_step(N, u, v, w, u_prev, v_prev, w_prev, visc, dt, _coll->d_calcCollision);
+	dens_step(N, dens, dens_prev, u, v, w, diff, dt, _coll->d_calcCollision);
 	cudaDeviceSynchronize();
 }
 
@@ -231,10 +232,30 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		simulation_stop = (simulation_stop == 0) ? 1 : 0;
 		std::cout << "시뮬레이션 모드 : " << simulation_stop << '\n';
 	}
+
+	if (key == GLFW_KEY_M && action == GLFW_RELEASE) {
+		_bullet.clear();
+		objMode++;
+		objMode = objMode % 2;
+		if (objMode == 0) {
+			bulletVel = 0.1f;
+		}
+		if (objMode == 1) {
+			bulletVel = 0.0f;
+			glm::vec3 cameraPos = getCameraPosition();
+			glm::vec3 cameraFront = getCameraDirection();
+			glm::vec3 _dir(0.0f, 0.0f, 0.0f);
+			float t = 2.0f;
+			glm::vec3 _pos = cameraPos + t * cameraFront;
+			glm::vec3 bInfo[2] = { _pos, _dir };
+			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
+		}
+		std::cout << "objMode : " << objMode << '\n';
+	}
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && _bullet.size() < maxObject) {
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && _bullet.size() < maxObject && objMode == 0) {
 		//glm::vec3 testPos(0, 0, 2);
 		//glm::vec3 testDir = testPos - glm::vec3(0,0,3);
 		glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
@@ -323,12 +344,23 @@ int main() {
 			cudaMemset(_coll->d_calcCollision, 0, (N + 2) * (N + 2) * (N + 2) * sizeof(int));
 			cudaMemset(_coll->d_calcID, 0, (N + 2) * (N + 2) * (N + 2) * sizeof(int));
 
-			_bullet.erase(std::remove_if(_bullet.begin(), _bullet.end(),
-				[](const std::unique_ptr<Bullet>& b) {
-					b->drawBullet(drawX, drawY, drawZ);
-					float breakLength = b->getLength();
-					return breakLength > 5.0f || breakLength < -5.0f; // 이 조건이 참이면 벡터에서 제거됩니다.
-				}), _bullet.end());
+			if (objMode == 0) {
+				_bullet.erase(std::remove_if(_bullet.begin(), _bullet.end(),
+					[](const std::unique_ptr<Bullet>& b) {
+						b->drawBullet(drawX, drawY, drawZ);
+						float breakLength = b->getLength();
+						return breakLength > 5.0f || breakLength < -5.0f; // 이 조건이 참이면 벡터에서 제거됩니다.
+					}), _bullet.end());
+			}
+			else if (objMode == 1) {
+				//glm::vec3 cameraPos = getCameraPosition();
+				//glm::vec3 cameraFront = getCameraDirection();
+				//float t = 2.0;
+				//glm::vec3 _pos = cameraPos + t * cameraFront;
+				//_bullet[0]->_dir = glm::normalize(_pos - _bullet[0]->_prev_pos);
+				//_bullet[0]->_vel = glm::length(_pos - _bullet[0]->_prev_pos);
+				_bullet[0]->drawBullet(drawX, drawY, drawZ);
+			}
 
 			// 시뮬레이션 반복
 			sim_fluid();
