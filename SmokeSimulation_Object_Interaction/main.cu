@@ -55,6 +55,7 @@ static int addforce = 0;
 static int mode = 0;
 static int simulation_stop = 0;
 static int objMode = 0;
+static bool boom = false;
 
 // 시뮬레이션 위치
 double drawX = -0.5;
@@ -202,10 +203,64 @@ void get_collision_force() {
 }
 /* ------------------------------------------------------------------ */
 
+// 폭발 외력 함수
+__global__ void exp_force(int N, float size, double dx, double dy, double dz, double* u, double* v, double* w) {
+	int i = blockIdx.x * blockDim.x + threadIdx.x + 1;
+	int j = blockIdx.y * blockDim.y + threadIdx.y + 1;
+	int k = blockIdx.z * blockDim.z + threadIdx.z + 1;
+	if (i < N && j < N && k < N) {
+		int cIdx = CIX(i, j, k);
+		double h = 1.0 / N;
+		double x = (i - 0.5) * h + dx;
+		double y = (j - 0.5) * h + dy;
+		double z = (k - 0.5) * h + dz;
+
+		glm::vec3 cell_center(x, y, z);
+		glm::vec3 sphere_center(dx + 0.5f, dy + 0.5f, dz + 0.5f);
+
+		// 구체와 셀 중심점 간의 거리 계산
+		float distance = glm::length(cell_center - sphere_center);
+
+		// 충돌 감지
+		if (distance <= size) {
+			if (x > sphere_center.x && y > sphere_center.y && z > sphere_center.z) {
+				u[cIdx] = 500.0; v[cIdx] = 500.0; w[cIdx] = 500.0;
+			}
+			else if (x <= sphere_center.x && y > sphere_center.y && z > sphere_center.z) {
+				u[cIdx] = -500.0; v[cIdx] = 500.0; w[cIdx] = 500.0;
+			}
+			else if (x > sphere_center.x && y > sphere_center.y && z <= sphere_center.z) {
+				u[cIdx] = 500.0; v[cIdx] = 500.0; w[cIdx] = -500.0;
+			}
+			else if (x <= sphere_center.x && y > sphere_center.y && z <= sphere_center.z) {
+				u[cIdx] = -500.0; v[cIdx] = 500.0; w[cIdx] = -500.0;
+			}
+			else if (x > sphere_center.x && y <= sphere_center.y && z > sphere_center.z) {
+				u[cIdx] = 500.0; v[cIdx] = -500.0; w[cIdx] = 500.0;
+			}
+			else if (x <= sphere_center.x && y <= sphere_center.y && z > sphere_center.z) {
+				u[cIdx] = -500.0; v[cIdx] = -500.0; w[cIdx] = 500.0;
+			}
+			else if (x > sphere_center.x && y <= sphere_center.y && z <= sphere_center.z) {
+				u[cIdx] = 500.0; v[cIdx] = -500.0; w[cIdx] = -500.0;
+			}
+			else if (x <= sphere_center.x && y <= sphere_center.y && z <= sphere_center.z) {
+				u[cIdx] = -500.0; v[cIdx] = -500.0; w[cIdx] = -500.0;
+			}
+		}
+	}
+}
+
 // 시뮬레이션 구동 함수
 void sim_fluid() {
 	get_force_source(dens_prev, u_prev, v_prev, w_prev);
 	get_collision_force();
+	if (boom) {
+		dim3 blockDim(8, 8, 8);
+		dim3 gridDim((N + blockDim.x - 1) / blockDim.x, (N + blockDim.y - 1) / blockDim.y, (N + blockDim.z - 1) / blockDim.z);
+		exp_force << <gridDim, blockDim >> > (N, 0.17, drawX, drawY, drawZ, u_prev, v_prev, w_prev);
+		boom = false;
+	}
 	_coll->divide_midCell(N);
 	vel_step(N, u, v, w, u_prev, v_prev, w_prev, visc, dt, _coll->d_calcCollision);
 	dens_step(N, dens, dens_prev, u, v, w, diff, dt, _coll->d_calcCollision);
@@ -255,10 +310,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		else if (objMode == 2) {
 			bulletSize = 0.17f;
 			bulletVel = 0.0f;
-			glm::vec3 _dir = glm::vec3(0.0f, 0.0f, 0.0f);
-			glm::vec3 _pos(0.0f, 0.4f, 0.0f);
-			glm::vec3 bInfo[2] = { _pos, _dir };
-			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
+			for (int i = 0; i < 2; i++) {
+				glm::vec3 _dir = glm::vec3(0.0f, 0.0f, 0.0f);
+				glm::vec3 _pos(drawX + i, 0.0f, 0.0f);
+				glm::vec3 bInfo[2] = { _pos, _dir };
+				_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
+			}
 		}
 		std::cout << "objMode : " << objMode << '\n';
 	}
@@ -279,7 +336,15 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
 		}
 		else if (objMode == 2) {
-			
+			dim3 blockDim(8, 8, 8);
+			dim3 gridDim((N + blockDim.x - 1) / blockDim.x, (N + blockDim.y - 1) / blockDim.y, (N + blockDim.z - 1) / blockDim.z);
+
+			boom = true;
+
+			for (int i = 0; i < _bullet.size(); i++) {
+				_bullet[i]->_dir = glm::normalize(_bullet[i]->_curr_pos - glm::vec3(0.0f, 0.0f, 0.0f));
+				_bullet[i]->_vel = 0.3f;				
+			}
 		}
 	}
 }

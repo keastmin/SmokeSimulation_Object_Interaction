@@ -41,6 +41,9 @@
     <ClInclude Include="CollisionBNDCalc.cuh">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Square.cuh">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="drawDensity.cu">
@@ -59,6 +62,9 @@
       <Filter>소스 파일</Filter>
     </CudaCompile>
     <CudaCompile Include="Bullet.cu">
+      <Filter>소스 파일</Filter>
+    </CudaCompile>
+    <CudaCompile Include="Square.cu">
       <Filter>소스 파일</Filter>
     </CudaCompile>
   </ItemGroup>

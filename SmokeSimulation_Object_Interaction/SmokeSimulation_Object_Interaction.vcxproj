@@ -23,6 +23,7 @@
     <ClInclude Include="drawVelocity.cuh" />
     <ClInclude Include="FluidSolver3d.cuh" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="Square.cuh" />
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="Bullet.cu" />
@@ -31,6 +32,7 @@
     <CudaCompile Include="drawVelocity.cu" />
     <CudaCompile Include="FluidSolver3d.cu" />
     <CudaCompile Include="main.cu" />
+    <CudaCompile Include="Square.cu" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E90984D1-5AC4-462C-BC60-7A506BCFB26D}</ProjectGuid>
