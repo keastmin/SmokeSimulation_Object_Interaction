@@ -128,6 +128,20 @@ static void init_data() {
 }
 /* ---------------------------------------------------- */
 
+// 시뮬레이션 초기화
+void sim_clear() {
+	int size = (N + 2) * (N + 2) * (N + 2);
+	size_t d_size = size * sizeof(double);
+	cudaMemset(u, 0.0, d_size);
+	cudaMemset(v, 0.0, d_size);
+	cudaMemset(w, 0.0, d_size);
+	cudaMemset(dens, 0.0, d_size);
+	cudaMemset(u_prev, 0.0, d_size);
+	cudaMemset(v_prev, 0.0, d_size);
+	cudaMemset(w_prev, 0.0, d_size);
+	cudaMemset(dens_prev, 0.0, d_size);
+}
+
 /* ------------------소스항 추가 함수------------------ */
 __global__ void setForceAndSource(double* d, double* v, int i1, int j1, int k1, double forceValue, int i2, int j2, int k2, double sourceValue) {
 	v[CIX(i1, j1, k1)] = forceValue;
@@ -286,6 +300,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_SPACE && action == GLFW_RELEASE) {
 		simulation_stop = (simulation_stop == 0) ? 1 : 0;
 		std::cout << "시뮬레이션 모드 : " << simulation_stop << '\n';
+	}
+
+	if (key == GLFW_KEY_C && action == GLFW_RELEASE) {
+		sim_clear();
+		std::cout << "시뮬레이션 초기화" << '\n';
 	}
 
 	if (key == GLFW_KEY_M && action == GLFW_RELEASE) {
