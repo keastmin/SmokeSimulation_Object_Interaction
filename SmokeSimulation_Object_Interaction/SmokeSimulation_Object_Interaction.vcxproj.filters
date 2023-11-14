@@ -38,6 +38,9 @@
     <ClInclude Include="Bullet.cuh">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionBNDCalc.cuh">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="drawDensity.cu">

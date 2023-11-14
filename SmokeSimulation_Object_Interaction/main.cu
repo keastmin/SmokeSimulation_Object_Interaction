@@ -236,12 +236,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_M && action == GLFW_RELEASE) {
 		_bullet.clear();
 		objMode++;
-		objMode = objMode % 2;
+		objMode = objMode % 3;
 		if (objMode == 0) {
 			bulletSize = 0.07f;
 			bulletVel = 0.1f;
 		}
-		if (objMode == 1) {
+		else if (objMode == 1) {
 			bulletSize = 0.1f;
 			bulletVel = 0.0f;
 			glm::vec3 cameraPos = getCameraPosition();
@@ -252,22 +252,35 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			glm::vec3 bInfo[2] = { _pos, _dir };
 			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
 		}
+		else if (objMode == 2) {
+			bulletSize = 0.17f;
+			bulletVel = 0.0f;
+			glm::vec3 _dir = glm::vec3(0.0f, 0.0f, 0.0f);
+			glm::vec3 _pos(0.0f, 0.4f, 0.0f);
+			glm::vec3 bInfo[2] = { _pos, _dir };
+			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
+		}
 		std::cout << "objMode : " << objMode << '\n';
 	}
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && _bullet.size() < maxObject && objMode == 0) {
-		//glm::vec3 testPos(0, 0, 2);
-		//glm::vec3 testDir = testPos - glm::vec3(0,0,3);
-		glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
-		glm::vec3 _dir = getCameraDirection();		// 현재 카메라가 바라보는 방향
-		//glm::vec3 _pos = testPos;
-		//glm::vec3 _dir = testDir;
-		_pos += (_dir * 1.0f);
-		glm::vec3 bInfo[2] = { _pos, _dir };
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && _bullet.size() < maxObject) {
+		if (objMode == 0) {
+			//glm::vec3 testPos(0, 0, 2);
+			//glm::vec3 testDir = testPos - glm::vec3(0,0,3);
+			glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
+			glm::vec3 _dir = getCameraDirection();		// 현재 카메라가 바라보는 방향
+			//glm::vec3 _pos = testPos;
+			//glm::vec3 _dir = testDir;
+			_pos += (_dir * 1.0f);
+			glm::vec3 bInfo[2] = { _pos, _dir };
 
-		_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
+			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
+		}
+		else if (objMode == 2) {
+			
+		}
 	}
 }
 
@@ -300,7 +313,6 @@ int main() {
 	// 변수 초기화 
 	init_data();
 	cudaDeviceSynchronize();
-
 
 	// 클래스 초기화
 	_vel = new drawVelocity(N, drawX, drawY, drawZ);
@@ -364,6 +376,14 @@ int main() {
 				_bullet[0]->_curr_pos = _pos;
 				_bullet[0]->drawBullet(drawX, drawY, drawZ);
 			}
+			else if (objMode == 2) {
+				_bullet.erase(std::remove_if(_bullet.begin(), _bullet.end(),
+					[](const std::unique_ptr<Bullet>& b) {
+						b->drawBullet(drawX, drawY, drawZ);
+						float breakLength = b->getLength();
+						return breakLength > 10.0f || breakLength < -10.0f; // 이 조건이 참이면 벡터에서 제거됩니다.
+					}), _bullet.end());
+			}
 
 			// 시뮬레이션 반복
 			sim_fluid();
@@ -379,6 +399,8 @@ int main() {
 			_vel->draw_vel(N, u, v, w);
 			glDepthMask(GL_TRUE);
 		}
+
+		cudaDeviceSynchronize();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

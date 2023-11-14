@@ -194,8 +194,14 @@ __global__ void updateBulletPos(int stacks, int slices, glm::vec3* sphere, glm::
 
 void Bullet::drawBullet(double dx, double dy, double dz) {
 	_curr_pos += _dir * _vel;
-	_dir = glm::normalize(_curr_pos - _prev_pos);
-	_vel = glm::length(_curr_pos - _prev_pos);
+	if (_curr_pos != _prev_pos) {
+		_dir = glm::normalize(_curr_pos - _prev_pos);
+		_vel = glm::length(_curr_pos - _prev_pos);
+	}
+	else {
+		_dir = glm::vec3(0.0f, 0.0f, 0.0f);
+		_vel = 0.0f;
+	}
 
 	dim3 blockDim(16, 16);
 	dim3 gridDim((numStacks + blockDim.x - 1) / blockDim.x, (numSlices + blockDim.y - 1) / blockDim.y);

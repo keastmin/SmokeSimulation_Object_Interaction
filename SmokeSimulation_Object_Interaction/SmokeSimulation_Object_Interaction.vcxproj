@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.cuh" />
+    <ClInclude Include="CollisionBNDCalc.cuh" />
     <ClInclude Include="CollisionObject.cuh" />
     <ClInclude Include="control.h" />
     <ClInclude Include="drawDensity.cuh" />
