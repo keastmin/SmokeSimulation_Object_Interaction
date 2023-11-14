@@ -238,9 +238,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		objMode++;
 		objMode = objMode % 2;
 		if (objMode == 0) {
+			bulletSize = 0.07f;
 			bulletVel = 0.1f;
 		}
 		if (objMode == 1) {
+			bulletSize = 0.1f;
 			bulletVel = 0.0f;
 			glm::vec3 cameraPos = getCameraPosition();
 			glm::vec3 cameraFront = getCameraDirection();
@@ -353,12 +355,13 @@ int main() {
 					}), _bullet.end());
 			}
 			else if (objMode == 1) {
-				//glm::vec3 cameraPos = getCameraPosition();
-				//glm::vec3 cameraFront = getCameraDirection();
-				//float t = 2.0;
-				//glm::vec3 _pos = cameraPos + t * cameraFront;
-				//_bullet[0]->_dir = glm::normalize(_pos - _bullet[0]->_prev_pos);
-				//_bullet[0]->_vel = glm::length(_pos - _bullet[0]->_prev_pos);
+				_bullet[0]->_dir = glm::vec3(0.0f, 0.0f, 0.0f);
+				_bullet[0]->_vel = 0.0f;
+				glm::vec3 cameraPos = getCameraPosition();
+				glm::vec3 cameraFront = getCameraDirection();
+				float t = 2.0;
+				glm::vec3 _pos = cameraPos + t * cameraFront;
+				_bullet[0]->_curr_pos = _pos;
 				_bullet[0]->drawBullet(drawX, drawY, drawZ);
 			}
 

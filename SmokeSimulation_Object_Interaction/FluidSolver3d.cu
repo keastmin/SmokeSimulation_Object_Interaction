@@ -74,6 +74,20 @@ __global__ void corner_bnd(int N, double* x) {
 	x[IX(N + 1, N + 1, N + 1)] = 1.0 / 3.0 * (x[IX(N, N + 1, N + 1)] + x[IX(N + 1, N, N + 1)] + x[IX(N + 1, N + 1, N)]);
 }
 
+// 충돌처리 경계 조건
+__global__ void outter_plane_bnd(int N, int b, double* x, int* d_calc) {
+	int i = blockIdx.x * blockDim.x + threadIdx.x + 1;
+	int j = blockIdx.y * blockDim.y + threadIdx.y + 1;
+	int k = blockIdx.z * blockDim.z + threadIdx.z + 1;
+	if (i <= N && j <= N && k <= N) {
+		int idx = IX(i, j, k);
+		int s = 0;
+		for (int u = 0; u < 20; u++) {
+			s++;
+		}
+	}
+}
+
 // 경계조건 커널 구동 함수
 void set_bnd(int N, int b, double* x, int* d_calc) {
 	int blockSize = 256;
@@ -95,6 +109,11 @@ void set_bnd(int N, int b, double* x, int* d_calc) {
 
 	// 코너에 대한 경계조건
 	corner_bnd << <1, 1 >> > (N, x);
+
+	outter_plane_bnd << <gridDim3, blockDim3 >> > (N, b, x, d_calc);
+	outter_plane_bnd << <gridDim3, blockDim3 >> > (N, b, x, d_calc);
+	outter_plane_bnd << <gridDim3, blockDim3 >> > (N, b, x, d_calc);
+	outter_plane_bnd << <gridDim3, blockDim3 >> > (N, b, x, d_calc);
 }
 /* ------------선형방정식 red black gauss seidel------------ */
 // red 셀 커널
