@@ -137,24 +137,24 @@ __global__ void update_dens(int N, glm::vec4* densC, double* kd, int* d_draw) {
 		d001 = kd[CIX(i + 1, j + 1, k + 2)];
 
 		// 투명도 조절
-		//glm::vec4 p000(d000, d000, d000, d000);
-		//glm::vec4 p100(d100, d100, d100, d100);
-		//glm::vec4 p110(d110, d110, d110, d110);
-		//glm::vec4 p101(d101, d101, d101, d101);
-		//glm::vec4 p111(d111, d111, d111, d111);
-		//glm::vec4 p010(d010, d010, d010, d010);
-		//glm::vec4 p011(d011, d011, d011, d011);
-		//glm::vec4 p001(d001, d001, d001, d001);
+		glm::vec4 p000(d000, d000, d000, d000);
+		glm::vec4 p100(d100, d100, d100, d100);
+		glm::vec4 p110(d110, d110, d110, d110);
+		glm::vec4 p101(d101, d101, d101, d101);
+		glm::vec4 p111(d111, d111, d111, d111);
+		glm::vec4 p010(d010, d010, d010, d010);
+		glm::vec4 p011(d011, d011, d011, d011);
+		glm::vec4 p001(d001, d001, d001, d001);
 
 		// 투명도 고정
-		glm::vec4 p000(d000, d000, d000, 0.03f);
-		glm::vec4 p100(d100, d100, d100, 0.03f);
-		glm::vec4 p110(d110, d110, d110, 0.03f);
-		glm::vec4 p101(d101, d101, d101, 0.03f);
-		glm::vec4 p111(d111, d111, d111, 0.03f);
-		glm::vec4 p010(d010, d010, d010, 0.03f);
-		glm::vec4 p011(d011, d011, d011, 0.03f);
-		glm::vec4 p001(d001, d001, d001, 0.03f);
+		//glm::vec4 p000(d000, d000, d000, 0.03f);
+		//glm::vec4 p100(d100, d100, d100, 0.03f);
+		//glm::vec4 p110(d110, d110, d110, 0.03f);
+		//glm::vec4 p101(d101, d101, d101, 0.03f);
+		//glm::vec4 p111(d111, d111, d111, 0.03f);
+		//glm::vec4 p010(d010, d010, d010, 0.03f);
+		//glm::vec4 p011(d011, d011, d011, 0.03f);
+		//glm::vec4 p001(d001, d001, d001, 0.03f);
 
 		glm::vec4 CCIn(1.0f, 0.0f, 0.0f, 1.0f);
 		glm::vec4 CCOut(1.0f, 1.0f, 0.0f, 0.2f);

@@ -422,7 +422,7 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
     		                                  ^
   
   main.cu
-  tmpxft_000059e8_00000000-7_main.cudafe1.cpp
+  tmpxft_000037d8_00000000-7_main.cudafe1.cpp
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
@@ -434,5 +434,5 @@ C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_O
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\main.cu(140): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\main.cu(141): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\main.cu(142): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\main.cu(275): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\SmokeSimulation_Object_Interaction\main.cu(274): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
   SmokeSimulation_Object_Interaction.vcxproj -> C:\Users\kemin\source\repos\SmokeSimulation_Object_Interaction\x64\Debug\SmokeSimulation_Object_Interaction.exe

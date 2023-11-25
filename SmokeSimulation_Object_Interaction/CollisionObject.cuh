@@ -38,7 +38,4 @@ public:
 	static void finalize_memory();
 };
 
-__global__ void divide_midCell_Outter();
-__global__ void divide_midCell_inner();
-
 #endif __COLLISIONOBJECT__

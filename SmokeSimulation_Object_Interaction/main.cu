@@ -33,8 +33,8 @@ GLFWwindow* window;
 #define SIZE 64
 
 // 윈도우 사이즈 정의
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 1000
 static int width = WINDOW_WIDTH;
 static int height = WINDOW_HEIGHT;
 
@@ -48,7 +48,7 @@ static double dt = 0.08;
 static double diff = 0.0;
 static double visc = 0.0;
 static double force = 15.0;
-static double source = 200.0f;
+static double source = 50.0f;
 
 // 시뮬레이션 제어 변수
 static int addforce = 0;
@@ -167,7 +167,6 @@ void get_force_source(double* d, double* u, double* v, double* w) {
 			std::cerr << "범위 벗어남" << '\n';
 			return;
 		}
-
 		forceValue = force * 3;
 		sourceValue = source;
 		setForceAndSource << <1, 1 >> > (d, v, i, j, k, forceValue, i, 10, k, sourceValue);
@@ -310,7 +309,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_M && action == GLFW_RELEASE) {
 		_bullet.clear();
 		objMode++;
-		objMode = objMode % 3;
+		objMode = objMode % 4;
 		if (objMode == 0) {
 			bulletSize = 0.07f;
 			bulletVel = 0.1f;
@@ -336,6 +335,14 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 				_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
 			}
 		}
+		else if (objMode == 3) {
+			bulletSize = 0.17f;
+			bulletVel = 0.0f;
+			glm::vec3 _dir = glm::vec3(0.0f, 0.0f, 0.0f);
+			glm::vec3 _pos(0.0f, 0.4f, 0.0f);
+			glm::vec3 bInfo[2] = { _pos, _dir };
+			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
+		}
 		std::cout << "objMode : " << objMode << '\n';
 	}
 }
@@ -343,18 +350,18 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && _bullet.size() < maxObject) {
 		if (objMode == 0) {
-			//glm::vec3 testPos(0, 0, 2);
-			//glm::vec3 testDir = testPos - glm::vec3(0,0,3);
-			glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
-			glm::vec3 _dir = getCameraDirection();		// 현재 카메라가 바라보는 방향
-			//glm::vec3 _pos = testPos;
-			//glm::vec3 _dir = testDir;
+			glm::vec3 testPos(0, 0, 2);
+			glm::vec3 testDir = testPos - glm::vec3(0,0,3);
+			//glm::vec3 _pos = getCameraPosition();		// 현재 카메라 위치
+			//glm::vec3 _dir = getCameraDirection();		// 현재 카메라가 바라보는 방향
+			glm::vec3 _pos = testPos;
+			glm::vec3 _dir = testDir;
 			_pos += (_dir * 1.0f);
 			glm::vec3 bInfo[2] = { _pos, _dir };
 
 			_bullet.emplace_back(std::make_unique<Bullet>(N, bulletSize, bInfo, bulletVel, bulletID++));
 		}
-		else if (objMode == 2) {
+		else if (objMode == 2 || objMode == 3) {
 			dim3 blockDim(8, 8, 8);
 			dim3 gridDim((N + blockDim.x - 1) / blockDim.x, (N + blockDim.y - 1) / blockDim.y, (N + blockDim.z - 1) / blockDim.z);
 
@@ -460,7 +467,7 @@ int main() {
 				_bullet[0]->_curr_pos = _pos;
 				_bullet[0]->drawBullet(drawX, drawY, drawZ);
 			}
-			else if (objMode == 2) {
+			else if (objMode == 2 || objMode == 3) {
 				_bullet.erase(std::remove_if(_bullet.begin(), _bullet.end(),
 					[](const std::unique_ptr<Bullet>& b) {
 						b->drawBullet(drawX, drawY, drawZ);
