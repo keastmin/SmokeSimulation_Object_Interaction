@@ -33,8 +33,8 @@ GLFWwindow* window;
 #define SIZE 64
 
 // 윈도우 사이즈 정의
-#define WINDOW_WIDTH 1000
-#define WINDOW_HEIGHT 1000
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
 static int width = WINDOW_WIDTH;
 static int height = WINDOW_HEIGHT;
 
@@ -48,7 +48,7 @@ static double dt = 0.08;
 static double diff = 0.0;
 static double visc = 0.0;
 static double force = 15.0;
-static double source = 50.0f;
+static double source = 150.0f;
 
 // 시뮬레이션 제어 변수
 static int addforce = 0;
