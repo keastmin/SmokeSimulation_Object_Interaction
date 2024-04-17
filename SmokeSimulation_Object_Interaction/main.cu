@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include <vector>
 
 #include <GL/glew.h>
@@ -169,7 +170,8 @@ void get_force_source(double* d, double* u, double* v, double* w) {
 		}
 		forceValue = force * 3;
 		sourceValue = source;
-		setForceAndSource << <1, 1 >> > (d, v, i, j, k, forceValue, i, 10, k, sourceValue);
+		setForceAndSource<<<1,1>>>(d, v, i, j, k, forceValue, i, 10, k, sourceValue);
+		//setForceAndSource<<<1, 1>>>(d, v, i, N - 1, k, (-1) * forceValue, i, N - 8, k, sourceValue);
 	}
 }
 /* --------------------------------------------------- */
@@ -401,9 +403,16 @@ int main() {
 		return -1;
 	}
 
+
 	// 변수 초기화 
 	init_data();
 	cudaDeviceSynchronize();
+
+	// FPS 측정 변수
+	using clock = std::chrono::high_resolution_clock;
+	std::chrono::time_point<clock> start, end, finish_sim;
+	double total_elapsed_seconds = 0;
+	int frame_count = 0;
 
 	// 클래스 초기화
 	_vel = new drawVelocity(N, drawX, drawY, drawZ);
@@ -431,7 +440,9 @@ int main() {
 	glDepthFunc(GL_LESS);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	finish_sim = clock::now();
 	do {
+		start = clock::now();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glUseProgram(programID);
@@ -495,7 +506,18 @@ int main() {
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+		end = clock::now();
+		total_elapsed_seconds += std::chrono::duration<double>(end - start).count();
+		++frame_count;
+		//double brk_sim = std::chrono::duration<double>(end - finish_sim).count();
+		//if (brk_sim >= 10.0) {
+		//	std::cout << brk_sim << '\n';
+		//	break;
+		//}
 	} while ((glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0));
+
+	double average_fps = frame_count / total_elapsed_seconds;
+	std::cout << "Average FPS: " << average_fps << std::endl;
 
 	// 데이터 정리
 	glDeleteProgram(programID);
